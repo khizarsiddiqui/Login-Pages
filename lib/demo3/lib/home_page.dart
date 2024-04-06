@@ -1,6 +1,7 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, unnecessary_statements
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:demo3/task_page.dart';
 import 'utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'components/halfrounded_box.dart';
@@ -16,23 +17,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-    void _onHomeIconPressed() {
-    Navigator.pushNamed(context, '/home');
-  }
-  void _onTaskIconPressed() {
-    Navigator.pushNamed(context, '/tasks');
-  }
-  List<IconData> iconList = [
-    Icons.home_outlined,
-    Icons.task_outlined,
-    Icons.dock_outlined,
-    Icons.man,
+  // grid icons
+  final List<IconData> _icons = [
+    Icons.money,
+    Icons.shopping_cart,
+    Icons.airplane_ticket,
+    Icons.camera,
+    Icons.book,
+    Icons.music_note,
+    Icons.movie,
+    Icons.restaurant,
+    Icons.directions_bike,
   ];
-  int _bottomNavIndex = 0;
+
+  final List _pages = [
+    TaskPage(),
+    TaskPage(),
+    TaskPage(),
+    TaskPage(),
+    TaskPage(),
+    TaskPage(),
+    TaskPage(),
+    TaskPage(),
+    TaskPage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    // double h = MediaQuery.of(context).size.height;
-    // double w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
@@ -239,12 +250,23 @@ class _HomePageState extends State<HomePage> {
                 (index) {
                   return Padding(
                     padding: EdgeInsets.all(8),
-                    child: HalfRounded(
-                      height: 0.1,
-                      width: 0.3,
-                      containerColor: Colors.blue,
-                      child: Center(
-                        child: Icon(Icons.money, size: 30),
+                    child: InkWell(
+                      onTap: () {
+                        print(index);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => _pages[index],
+                          ),
+                        );
+                      },
+                      child: HalfRounded(
+                        height: 0.1,
+                        width: 0.3,
+                        containerColor: Colors.blue,
+                        child: Center(
+                          child: Icon(_icons[index], size: 30),
+                        ),
                       ),
                     ),
                   );
@@ -279,7 +301,7 @@ class _HomePageState extends State<HomePage> {
                         child: Container(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Colors.lightBlueAccent, Colors.white],
+                              colors: [Colors.blue, Colors.lightBlueAccent],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
@@ -289,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                               horizontal: 12.0, vertical: 8.0),
                           child: Text(
                             "Travel Expense",
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
@@ -374,7 +396,6 @@ class _HomePageState extends State<HomePage> {
                               colors: [
                                 Colors.blue,
                                 Colors.lightBlueAccent,
-                                Colors.white
                               ],
                             ),
                             borderRadius: BorderRadius.circular(20.0),
@@ -580,7 +601,6 @@ class _HomePageState extends State<HomePage> {
                               colors: [
                                 Colors.blue,
                                 Colors.lightBlueAccent,
-                                Colors.white
                               ],
                             ),
                             borderRadius: BorderRadius.circular(20.0),
@@ -678,40 +698,6 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.lightBlueAccent,
-          child: Icon(Icons.add),
-          onPressed: () {},
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40),
-          ),
-        ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-        itemCount: iconList.length,
-        tabBuilder: (int index, bool isActive) {
-          return Icon(
-            iconList[index],
-            size: 28,
-            color: isActive ? Colors.blueAccent : Colors.lightBlueAccent,
-          );
-        },
-        activeIndex: _bottomNavIndex,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.verySmoothEdge,
-        leftCornerRadius: 32,
-        rightCornerRadius: 32,
-          onTap: (index) {
-            setState(() {
-              _bottomNavIndex = index;
-              if (index == 1) {
-                _onHomeIconPressed();
-              } else if (index == 2) {
-                _onTaskIconPressed();
-              }
-            });
-          },
       ),
     );
   }

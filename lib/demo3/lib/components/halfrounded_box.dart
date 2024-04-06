@@ -23,7 +23,7 @@ class HalfRounded extends StatelessWidget {
       width: w * width,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.blue, Colors.white],
+          colors: [Colors.lightBlueAccent, Colors.white],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),

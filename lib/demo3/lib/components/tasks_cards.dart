@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-
 class TaskCard extends StatefulWidget {
   String text1;
   String text2;
@@ -156,9 +155,7 @@ class _TaskCardState extends State<TaskCard> {
             top: 10,
             right: 10,
             child: GestureDetector(
-              onTap: () {
-                // _showDropdown(context);
-              },
+              onTap: () {},
               child: Container(
                 padding: EdgeInsets.only(left: 5),
                 height: 40,
