@@ -1,20 +1,22 @@
 // ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
+import 'comments_list.dart';
 
 class TaskCard extends StatefulWidget {
   String text1;
   String text2;
   String text3;
   String currentstatus;
+  double marginSides;
 
   TaskCard(
-    {Key? key,
-    required this.text1,
-    required this.text2,
-    required this.text3,
-    required this. currentstatus}
-    ) : super(key: key);
+      {Key? key,
+      required this.text1,
+      required this.text2,
+      required this.text3,
+      required this.currentstatus,
+      required this.marginSides})
+      : super(key: key);
 
   @override
   _TaskCardState createState() => _TaskCardState();
@@ -24,14 +26,14 @@ class _TaskCardState extends State<TaskCard> {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.all(widget.marginSides),
       decoration: BoxDecoration(
         color: Colors.lightBlueAccent,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.grey.withOpacity(0.35),
             spreadRadius: 5,
             blurRadius: 7,
             offset: Offset(0, 2),
@@ -204,7 +206,16 @@ class _TaskCardState extends State<TaskCard> {
             bottom: 7,
             left: 15,
             child: Container(
-              child: Image.asset("images/comment.png", height: 23),
+              width: 30,
+              height: 30,
+              child: IconButton(
+                iconSize: 20,
+                color: Colors.white,
+                icon: Icon(Icons.comment_outlined),
+                onPressed: () {
+                  mysheet(context);
+                },
+              ),
             ),
           ),
           Positioned(
@@ -214,7 +225,7 @@ class _TaskCardState extends State<TaskCard> {
               height: 200,
               alignment: Alignment.centerLeft,
               child: Text(
-                "Alvish Ramani",
+                "Khizar S.",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -264,6 +275,50 @@ class _TaskCardState extends State<TaskCard> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> mysheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SingleChildScrollView(
+          child: Wrap(
+            children: [
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -42,11 +42,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+        height: 45,
         itemCount: iconList.length,
         tabBuilder: (int index, bool isActive) {
           return Icon(
             iconList[index],
-            size: 28,
+            size: 24,
             color: isActive ? Colors.blueAccent : Colors.lightBlueAccent,
           );
         },

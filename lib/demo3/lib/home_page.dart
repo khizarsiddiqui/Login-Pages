@@ -1,7 +1,9 @@
 // ignore_for_file: unused_import, unnecessary_statements
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:demo3/task_page.dart';
+import 'payroll.dart';
+import 'payroll_summary.dart';
+import 'task_page.dart';
 import 'utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'components/halfrounded_box.dart';
@@ -44,6 +46,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
@@ -136,7 +140,12 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(color: Colors.grey.shade600, fontSize: 18),
                   ),
                   TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TaskPage()),
+                      );
+                    },
                     label: Text(
                       "View All",
                       style: TextStyle(color: Colors.blueAccent, fontSize: 18),
@@ -150,80 +159,64 @@ class _HomePageState extends State<HomePage> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: List.generate(
-                  5,
-                  (index) {
-                    return Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: HalfRounded(
-                        height: 0.23,
-                        width: 0.8,
-                        containerColor: Colors.blueAccent,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              top: 10,
-                              left: 10,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Text("Urgent"),
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 10,
-                              right: 10,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Text("Overdue"),
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 15,
-                              left: 0,
-                              right: 0,
-                              top: 100,
-                              child: Container(
-                                color: Colors.white.withOpacity(0.5),
-                                padding: EdgeInsets.symmetric(vertical: 10),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.comment,
-                                        color: Colors.blue,
-                                      ),
-                                    ),
-                                    CircleAvatar(
-                                      radius: 15,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                    CircleAvatar(
-                                      radius: 15,
-                                      backgroundColor: Colors.blue,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Container(
+                      width: w * 0.9,
+                      height: h * 0.295,
+                      child: TaskCard(
+                        currentstatus: "High",
+                        text1: "Project-3",
+                        text2: "finished",
+                        text3: "25-09-2023",
+                        marginSides: 0,
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Container(
+                      width: w * 0.9,
+                      height: h * 0.295,
+                      child: TaskCard(
+                        currentstatus: "High",
+                        text1: "Project-3",
+                        text2: "finished",
+                        text3: "25-09-2023",
+                        marginSides: 0,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Container(
+                      width: w * 0.9,
+                      height: h * 0.295,
+                      child: TaskCard(
+                        currentstatus: "High",
+                        text1: "Project-3",
+                        text2: "finished",
+                        text3: "25-09-2023",
+                        marginSides: 0,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Container(
+                      width: w * 0.9,
+                      height: h * 0.295,
+                      child: TaskCard(
+                        currentstatus: "High",
+                        text1: "Project-3",
+                        text2: "finished",
+                        text3: "25-09-2023",
+                        marginSides: 0,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 20),
@@ -573,7 +566,14 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(color: Colors.grey.shade600, fontSize: 18),
                   ),
                   TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PayrollScreen(),
+                        ),
+                      );
+                    },
                     label: Text(
                       "View All",
                       style: TextStyle(color: Colors.blueAccent, fontSize: 18),
@@ -672,19 +672,31 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           SizedBox(height: 3.0),
-                          Container(
-                            width: double.infinity,
-                            child: TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(color: Colors.grey),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Container(
+                              width: double.infinity,
+                              child: TextButton.icon(
+                                style: TextButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(color: Colors.grey),
+                                  ),
                                 ),
-                              ),
-                              child: Text(
-                                "View Salary Slip",
-                                style: TextStyle(color: Colors.grey),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => PayrollSummary()),
+                                  );
+                                },
+                                label: Text(
+                                  "View Salary Slip",
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                icon: Icon(Icons.arrow_forward,
+                                    color: Colors.transparent),
                               ),
                             ),
                           ),
@@ -695,7 +707,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 60),
           ],
         ),
       ),

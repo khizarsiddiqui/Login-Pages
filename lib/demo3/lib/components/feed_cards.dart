@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'comments_list.dart';
 import 'common_text.dart';
 
 class FeedCard extends StatefulWidget {
@@ -127,7 +128,9 @@ class _FeedCardState extends State<FeedCard> {
                     iconSize: 20,
                     color: Colors.lightBlueAccent,
                     icon: Icon(Icons.comment_outlined),
-                    onPressed: () {},
+                    onPressed: () {
+                      mysheet(context);
+                    },
                   ),
                 ),
               ],
@@ -135,6 +138,50 @@ class _FeedCardState extends State<FeedCard> {
           ],
         ),
       ),
+    );
+  }
+  
+  Future<dynamic> mysheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SingleChildScrollView(
+          child: Wrap(
+            children: [
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
