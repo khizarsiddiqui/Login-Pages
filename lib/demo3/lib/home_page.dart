@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import, unnecessary_statements
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:demo3/order.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'payroll.dart';
 import 'payroll_summary.dart';
@@ -21,15 +22,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<IconData> _icons = [
-    Icons.money,
-    Icons.shopping_cart,
-    Icons.airplane_ticket,
-    Icons.camera,
-    Icons.book,
-    Icons.music_note,
-    Icons.movie,
-    Icons.restaurant,
-    Icons.directions_bike,
+    Icons.money_outlined,
+    Icons.bed_outlined,
+    Icons.payment_outlined,
+    Icons.holiday_village_outlined,
+    Icons.calendar_today_outlined,
+    Icons.currency_exchange_outlined,
+    Icons.list_alt_outlined,
+    Icons.transcribe_outlined,
+    Icons.payments_outlined,
+  ];
+  final List<String> _iconText = [
+    "Expense",
+    "Leave",
+    "Payroll",
+    "Holiday",
+    "Attendance",
+    "Transactions",
+    "Orders",
+    "Visit",
+    "Payment",
   ];
 
   final List _pages = [
@@ -39,7 +51,7 @@ class _HomePageState extends State<HomePage> {
     TaskPage(),
     TaskPage(),
     TaskPage(),
-    TaskPage(),
+    OrderScreen(),
     TaskPage(),
     TaskPage(),
   ];
@@ -262,8 +274,12 @@ class _HomePageState extends State<HomePage> {
                         height: 0.1,
                         width: 0.3,
                         containerColor: Colors.blue,
-                        child: Center(
-                          child: Icon(_icons[index], size: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(_icons[index], size: 30),
+                            Text(_iconText[index], style: TextStyle(fontSize: 12),),
+                          ],
                         ),
                       ),
                     ),
