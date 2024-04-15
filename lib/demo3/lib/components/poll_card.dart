@@ -1,7 +1,9 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, unnecessary_statements
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+import 'comments_list.dart';
 import 'common_text.dart';
 
 class PollCard extends StatefulWidget {
@@ -83,7 +85,16 @@ class _PollCardState extends State<PollCard> {
                 ],
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Fluttertoast.showToast(
+                      msg: "(In Progress)",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      textColor: Colors.black,
+                      backgroundColor: Colors.white,
+                      fontSize: 16);
+                },
                 icon: Icon(Icons.more_vert),
               ),
             ),
@@ -118,7 +129,9 @@ class _PollCardState extends State<PollCard> {
                         text: widget.centerText2,
                         fontSize: 16,
                       ),
-                      SizedBox(width: 15,),
+                      SizedBox(
+                        width: 15,
+                      ),
                       Container(
                         height: 8,
                         width: 210,
@@ -145,7 +158,9 @@ class _PollCardState extends State<PollCard> {
                         text: widget.centerText3,
                         fontSize: 16,
                       ),
-                      SizedBox(width: 15,),
+                      SizedBox(
+                        width: 15,
+                      ),
                       Container(
                         height: 8,
                         width: 210,
@@ -218,7 +233,16 @@ class _PollCardState extends State<PollCard> {
                     iconSize: 20,
                     color: Colors.lightBlueAccent,
                     icon: Icon(Icons.thumb_up_rounded),
-                    onPressed: () {},
+                    onPressed: () {
+                      Fluttertoast.showToast(
+                          msg: "Liked",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.black,
+                          backgroundColor: Colors.white,
+                          fontSize: 16);
+                    },
                   ),
                 ),
                 Container(
@@ -228,7 +252,9 @@ class _PollCardState extends State<PollCard> {
                     iconSize: 20,
                     color: Colors.lightBlueAccent,
                     icon: Icon(Icons.comment_outlined),
-                    onPressed: () {},
+                    onPressed: () {
+                      mysheet(context);
+                    },
                   ),
                 ),
               ],
@@ -236,6 +262,50 @@ class _PollCardState extends State<PollCard> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<dynamic> mysheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SingleChildScrollView(
+          child: Wrap(
+            children: [
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+              CommentList(
+                username: "Khizar S.",
+                commentBody: "Testing Comments",
+                time: "8 months ago",
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

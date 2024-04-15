@@ -16,6 +16,7 @@ dependencies:
   pie_chart: ^5.4.0
   fl_chart: ^0.65.0
   intl: ^0.19.0
+  fluttertoast: ^8.2.5
 
 dev_dependencies:
   flutter_test:
@@ -26,7 +27,7 @@ flutter_icons:
   # android: false
   ios: true
   remove_alpha_ios: false
-  image_path: "images/instagram.png"
+  image_path: "images/flutter.png"
   min_sdk_android: 24 # android min sdk min:16, default 21
   # ios: "Example-Icon"
 

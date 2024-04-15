@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'utils/constants.dart';
-import 'components/login_textfield.dart';
-import 'components/custom_button.dart';
-import 'components/signin_button.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'dashboard.dart';
+import 'utils/constants2.dart';
+import 'components/login_textfield2.dart';
+import 'components/signin_button2.dart';
 
 class Login3 extends StatefulWidget {
   const Login3({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class Login3 extends StatefulWidget {
 }
 
 class _Login3State extends State<Login3> {
+  bool _isChecked = true;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   @override
@@ -66,14 +68,14 @@ class _Login3State extends State<Login3> {
                       Text(
                         "Username",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       LoginTextField(myController: usernameController),
                       // SizedBox(height: h * 0.03),
                       Text(
                         "Password",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       LoginTextField(
                           isPass: true, myController: passwordController),
@@ -83,7 +85,8 @@ class _Login3State extends State<Login3> {
                         children: [
                           Text(
                             'Forgot Password?',
-                            style: TextStyle(color: signinButton),
+                            style: TextStyle(
+                                color: const Color.fromARGB(255, 2, 128, 186)),
                           ),
                         ],
                       ),
@@ -95,28 +98,44 @@ class _Login3State extends State<Login3> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Checkbox(
-                                value: false,
-                                onChanged: (bool? value) {},
+                                fillColor: MaterialStatePropertyAll(
+                                    Colors.lightBlueAccent),
+                                checkColor: Colors.black,
+                                value: _isChecked,
+                                onChanged: (bool? value) {
+                                  setState(
+                                    () {
+                                      _isChecked = value ?? false;
+                                    },
+                                  );
+                                },
                               ),
                               Text('Remember Me'),
                             ],
                           ),
-                          SigninButton(text: 'Sign In', onPress:() => {}),
+                          SigninButton(
+                            text: 'Sign In',
+                            onPress: () {
+                              Fluttertoast.showToast(
+                                  msg: "Sign In Successful",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.black,
+                                  backgroundColor: Colors.white,
+                                  fontSize: 16);
+                              Future.delayed(Duration(seconds: 1), () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (_) => DashboardScreen(),
+                                  ),
+                                );
+                              });
+                            },
+                          ),
                         ],
                       ),
                       Divider(color: dividerColor),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          CustomButton(icon: Icons.apple),
-                          Text(
-                            "Or",
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          CustomButton(icon: Icons.apple),
-                        ],
-                      ),
                     ],
                   ),
                 ),

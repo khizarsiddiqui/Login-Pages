@@ -54,14 +54,20 @@ class _LoginTextFieldState extends State<LoginTextField> {
               hintText: widget.hintText,
               // label: Text("Password"),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
                 borderSide: BorderSide(
                   width: 0.5,
                   color: Colors.grey.shade100,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
                 borderSide: BorderSide(width: 2, color: Colors.grey.shade300),
               ),
             ),
@@ -86,14 +92,20 @@ class _LoginTextFieldState extends State<LoginTextField> {
               hintText: widget.hintText,
               // label: Text("Username"),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
                 borderSide: BorderSide(
                   width: 0.5,
                   color: Colors.grey.shade100,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
                 borderSide: BorderSide(width: 2, color: Colors.grey.shade300),
               ),
             ),

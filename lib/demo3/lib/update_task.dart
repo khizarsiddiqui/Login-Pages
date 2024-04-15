@@ -1,8 +1,8 @@
 import 'package:demo3/components/common_button.dart';
 import 'package:demo3/components/update_taskfield.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-
 
 class UpdateTask extends StatefulWidget {
   const UpdateTask({super.key});
@@ -145,7 +145,14 @@ class _UpdateTaskState extends State<UpdateTask> {
                       child: CommonButton(
                         color: Colors.grey.shade500,
                         onPress: () {
-                          // Handle the action for the first button
+                          Fluttertoast.showToast(
+                              msg: "Cancelled",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              textColor: Colors.black,
+                              backgroundColor: Colors.white,
+                              fontSize: 16);
                         },
                         text: "Cancel",
                       ),
@@ -155,7 +162,14 @@ class _UpdateTaskState extends State<UpdateTask> {
                       child: CommonButton(
                         color: Colors.lightBlueAccent,
                         onPress: () {
-                          // Handle the action for the first button
+                          Fluttertoast.showToast(
+                              msg: "Updated",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              textColor: Colors.black,
+                              backgroundColor: Colors.white,
+                              fontSize: 16);
                         },
                         text: "Update",
                       ),
@@ -203,7 +217,7 @@ class _UpdateTaskState extends State<UpdateTask> {
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
-         dateController.text = DateFormat('yyyy-MM-dd').format(picked);
+        dateController.text = DateFormat('yyyy-MM-dd').format(picked);
         print(dateController.text);
       });
     }

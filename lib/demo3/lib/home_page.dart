@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import, unnecessary_statements
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'payroll.dart';
 import 'payroll_summary.dart';
 import 'task_page.dart';
@@ -19,7 +20,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // grid icons
   final List<IconData> _icons = [
     Icons.money,
     Icons.shopping_cart,
@@ -82,26 +82,22 @@ class _HomePageState extends State<HomePage> {
                               Text(
                                 "Welcome",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 25),
+                                    fontSize: 20),
                               ),
                               Text(
                                 "Username 123",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.lightBlueAccent,
-                                    fontSize: 25),
+                                    fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                               Text(
                                 "Day",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 15),
+                                    fontSize: 15),
                               ),
                               Text(
                                 "3rd April 2024",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    color: Colors.blueAccent),
+                                    fontSize: 15),
                               ),
                             ],
                           ),
@@ -118,11 +114,20 @@ class _HomePageState extends State<HomePage> {
                         height: 20,
                       ),
                       HalfRoundedButton(
-                        text: "Check-out",
-                        onPress: () {},
+                        text: "Check-In",
+                        onPress: () {
+                          Fluttertoast.showToast(
+                              msg: "Check-In Successful",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              textColor: Colors.green,
+                              backgroundColor: Colors.white,
+                              fontSize: 16);
+                        },
                         containerColor: Colors.transparent,
-                        outlineColor: Colors.red,
-                        textColor: Colors.red,
+                        outlineColor: Colors.green,
+                        textColor: Colors.green,
                       ),
                     ],
                   ),
@@ -302,9 +307,21 @@ class _HomePageState extends State<HomePage> {
                           ),
                           padding: EdgeInsets.symmetric(
                               horizontal: 12.0, vertical: 8.0),
-                          child: Text(
-                            "Travel Expense",
-                            style: TextStyle(color: Colors.white),
+                          child: InkWell(
+                            onTap: () {
+                              Fluttertoast.showToast(
+                                  msg: "Travel Expense (In Progress)",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.black,
+                                  backgroundColor: Colors.white,
+                                  fontSize: 16);
+                            },
+                            child: Text(
+                              "Travel Expense",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
@@ -326,9 +343,21 @@ class _HomePageState extends State<HomePage> {
                           ),
                           padding: EdgeInsets.symmetric(
                               horizontal: 12.0, vertical: 8.0),
-                          child: Text(
-                            "Draft",
-                            style: TextStyle(color: Colors.white),
+                          child: InkWell(
+                            onTap: () {
+                              Fluttertoast.showToast(
+                                  msg: "Draft (In Progress)",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.black,
+                                  backgroundColor: Colors.white,
+                                  fontSize: 16);
+                            },
+                            child: Text(
+                              "Draft",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
@@ -395,9 +424,21 @@ class _HomePageState extends State<HomePage> {
                           ),
                           padding: EdgeInsets.symmetric(
                               horizontal: 12.0, vertical: 8.0),
-                          child: Text(
-                            "April",
-                            style: TextStyle(color: Colors.white),
+                          child: InkWell(
+                            onTap: () {
+                              Fluttertoast.showToast(
+                                  msg: "Month Of the Year",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.black,
+                                  backgroundColor: Colors.white,
+                                  fontSize: 16);
+                            },
+                            child: Text(
+                              "April",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
@@ -607,9 +648,21 @@ class _HomePageState extends State<HomePage> {
                           ),
                           padding: EdgeInsets.symmetric(
                               horizontal: 12.0, vertical: 8.0),
-                          child: Text(
-                            "August 2023",
-                            style: TextStyle(color: Colors.white),
+                          child: InkWell(
+                            onTap: () {
+                              Fluttertoast.showToast(
+                                  msg: "Month & Year",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.black,
+                                  backgroundColor: Colors.white,
+                                  fontSize: 16);
+                            },
+                            child: Text(
+                              "August 2023",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),

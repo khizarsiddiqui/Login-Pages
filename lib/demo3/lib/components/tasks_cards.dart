@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 import 'package:demo3/components/task_card_details.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'comments_list.dart';
 
 class TaskCard extends StatefulWidget {
@@ -153,11 +154,23 @@ class _TaskCardState extends State<TaskCard> {
                   ),
                 ),
                 child: Center(
-                  child: Text(
-                    widget.currentstatus,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+                  child: InkWell(
+                    onTap: () {
+                      Fluttertoast.showToast(
+                          msg: "Priority",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.black,
+                          backgroundColor: Colors.white,
+                          fontSize: 16);
+                    },
+                    child: Text(
+                      widget.currentstatus,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
@@ -167,7 +180,16 @@ class _TaskCardState extends State<TaskCard> {
               top: 10,
               right: 10,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Fluttertoast.showToast(
+                      msg: "Status",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      textColor: Colors.black,
+                      backgroundColor: Colors.white,
+                      fontSize: 16);
+                },
                 child: Container(
                   padding: EdgeInsets.only(left: 5),
                   height: 40,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 import 'components/common_text.dart';
@@ -297,7 +298,16 @@ class _PayrollSummaryState extends State<PayrollSummary> {
                       fontSize: 16,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg: "Download (In Progress)",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.black,
+                        backgroundColor: Colors.white,
+                        fontSize: 16);
+                  },
                 ),
               ),
             ),

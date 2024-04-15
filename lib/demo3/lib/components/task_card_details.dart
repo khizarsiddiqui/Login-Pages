@@ -1,6 +1,7 @@
 import 'package:demo3/components/comments_list.dart';
 import 'package:demo3/update_task.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'comment_textfield.dart';
 import 'common_text.dart';
@@ -72,17 +73,38 @@ class _TaskDetailsState extends State<TaskDetails> {
                       ),
                     ),
                     child: Center(
-                      child: Text(
-                        "Urgent",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 16,
+                      child: InkWell(
+                        onTap: () {
+                          Fluttertoast.showToast(
+                              msg: "Priority",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              textColor: Colors.black,
+                              backgroundColor: Colors.white,
+                              fontSize: 16);
+                        },
+                        child: Text(
+                          "Urgent",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Fluttertoast.showToast(
+                          msg: "Status",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.black,
+                          backgroundColor: Colors.white,
+                          fontSize: 16);
+                    },
                     child: Container(
                       width: w * 0.26,
                       height: h * 0.06,
