@@ -1,41 +1,27 @@
+import 'package:demo3/components/attendance_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pie_chart/pie_chart.dart';
 
-import 'components/common_text.dart';
-import 'components/payroll_text.dart';
-
-class PayrollSummary extends StatefulWidget {
-  const PayrollSummary({Key? key}) : super(key: key);
+class AttendanceScreen extends StatefulWidget {
+  const AttendanceScreen({Key? key}) : super(key: key);
 
   @override
-  State<PayrollSummary> createState() => _PayrollSummaryState();
+  State<AttendanceScreen> createState() => _AttendanceScreenState();
 }
 
-class _PayrollSummaryState extends State<PayrollSummary> {
+class _AttendanceScreenState extends State<AttendanceScreen> {
   String selectedYear = 'Select Year';
   String selectedMonth = 'Select Month';
-  final gradientList = <List<Color>>[
-    [
-      Color.fromRGBO(223, 250, 92, 1),
-      Color.fromRGBO(129, 250, 112, 1),
-    ],
-    [
-      Color.fromRGBO(41, 62, 8, 1),
-      Color.fromRGBO(158, 76, 72, 1),
-    ],
-    [
-      Color.fromRGBO(129, 182, 205, 1),
-      Color.fromRGBO(91, 253, 199, 1),
-    ],
-    [
-      Color.fromRGBO(175, 63, 62, 1.0),
-      Color.fromRGBO(254, 154, 92, 1),
-    ],
+  final colorList = [
+    Colors.green,
+    Colors.orangeAccent,
+    Colors.red,
   ];
   Map<String, double> dataMap = {
-    "BHD 10300": 7,
-    "BHD 200": 3,
+    "On Timen": 10,
+    "Late": 10,
+    "Absent": 8,
   };
 
   @override
@@ -114,7 +100,7 @@ class _PayrollSummaryState extends State<PayrollSummary> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Payroll"),
+        title: Text("Attendance"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -177,14 +163,19 @@ class _PayrollSummaryState extends State<PayrollSummary> {
                 width: double.infinity,
                 height: 150,
                 child: PieChart(
-                  centerText: "Gross Pay",
+                  centerText: "28 \nTotal Days",
+                  centerTextStyle: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
                   chartRadius: 120,
-                  ringStrokeWidth: 08,
+                  ringStrokeWidth: 14,
                   dataMap: dataMap,
                   chartType: ChartType.ring,
                   baseChartColor: Colors.transparent,
-                  gradientList: gradientList,
+                  colorList: colorList,
                   chartValuesOptions: ChartValuesOptions(
+                    showChartValues: false,
                     chartValueBackgroundColor: Colors.transparent,
                     showChartValuesInPercentage: false,
                   ),
@@ -209,69 +200,29 @@ class _PayrollSummaryState extends State<PayrollSummary> {
             SizedBox(
               height: 10,
             ),
-            Container(
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                ),
-              ),
-              child: Center(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CommonText(
-                        text: "Basic",
-                        color: Colors.blueAccent,
-                        weight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                      Divider(),
-                      PayrollText(
-                          textLeft: "Employee ID", textRight: "HR-EMP-00022"),
-                      Divider(),
-                      PayrollText(
-                          textLeft: "Effective work days", textRight: "31.0"),
-                      Divider(),
-                      PayrollText(
-                          textLeft: "Total work days", textRight: "31.0"),
-                      Divider(),
-                      PayrollText(textLeft: "LOP", textRight: "0.0"),
-                      Divider(),
-                      CommonText(
-                        text: "Earnings",
-                        color: Colors.blueAccent,
-                        weight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                      Divider(),
-                      PayrollText(textLeft: "Basic", textRight: "BHD 10000.0"),
-                      Divider(),
-                      PayrollText(textLeft: "HRA", textRight: "BHD 200.0"),
-                      Divider(),
-                      PayrollText(
-                          textLeft: "Leave Encashment", textRight: "BHD 300.0"),
-                      Divider(),
-                      CommonText(
-                        text: "Deduction",
-                        color: Colors.blueAccent,
-                        weight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                      Divider(),
-                      PayrollText(
-                          textLeft: "Income Tax", textRight: "BHD 100.0"),
-                      Divider(),
-                      PayrollText(textLeft: "Gosi", textRight: "BHD 100.0"),
-                    ],
-                  ),
-                ),
-              ),
+            AttendanceCard(
+              day: "01 Wednesday",
+              checkinTime: "12:02 pm",
+              checkoutTime: "09:32 pm",
+              workDuration: "8.5 Hrs",
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            AttendanceCard(
+              day: "25 Saturday",
+              checkinTime: "12:06 pm",
+              checkoutTime: "09:36 pm",
+              workDuration: "8.5 Hrs",
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            AttendanceCard(
+              day: "21 Tuesday",
+              checkinTime: "12:15 pm",
+              checkoutTime: "09:15 pm",
+              workDuration: "8 Hrs",
             ),
             SizedBox(
               height: 20,

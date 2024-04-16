@@ -27,9 +27,17 @@ class CommentTextField extends StatelessWidget {
           onPressed: onPress,
         ),
         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+          ),
           borderSide: BorderSide(color: Colors.grey.shade600, width: 2.0),
         ),
         enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+          ),
           borderSide: BorderSide(color: Colors.grey.shade300, width: 1.0),
         ),
         hintText: hint,
