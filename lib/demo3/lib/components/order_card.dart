@@ -75,39 +75,46 @@ class OrderCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Customer Name",
-                    style: TextStyle(color: Colors.grey),
+                  Column(
+                    children: [
+                      Text(
+                        "Customer Name",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      SizedBox(height: 5,),
+                      Text(
+                        "Khizar",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "Items",
-                    style: TextStyle(color: Colors.grey),
+                  Column(
+                    children: [
+                      Text(
+                        "Items",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      SizedBox(height: 5,),
+                      Text(
+                        "1.0",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "Amount",
-                    style: TextStyle(color: Colors.grey),
+                  Column(
+                    children: [
+                      Text(
+                        "Amount",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      SizedBox(height: 5,),
+                      Text(
+                        "Rs.100",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Khizar",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    Text(
-                      "1.0",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    Text(
-                      "Rs.100",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
-                ),
               ),
             ],
           ),

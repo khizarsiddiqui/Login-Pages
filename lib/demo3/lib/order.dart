@@ -1,6 +1,8 @@
 import 'package:demo3/components/order_card.dart';
 import 'package:flutter/material.dart';
 
+import 'create_order.dart';
+
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
 
@@ -47,6 +49,21 @@ class _OrderScreenState extends State<OrderScreen> {
               ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlueAccent,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CreateOrder(),
+            ),
+          );
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
         ),
       ),
     );

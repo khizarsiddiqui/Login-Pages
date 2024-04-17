@@ -36,17 +36,71 @@ class _OrderDetailsState extends State<OrderDetails> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Column(
+                    children: [
+                      Text(
+                        "Expected Delivery",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Text(
+                        "23-04-2024",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "Items",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Text(
+                        "5",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "Amount",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Text(
+                        "Rs.5,000",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 4),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    "Expected Delivery",
+                    "Created by",
                     style: TextStyle(color: Colors.grey),
                   ),
                   Text(
-                    "Items",
+                    "Khizar",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
+              SizedBox(height: 4),
+              Divider(),
+              SizedBox(height: 4),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Customer Name",
                     style: TextStyle(color: Colors.grey),
                   ),
                   Text(
-                    "Amount",
-                    style: TextStyle(color: Colors.grey),
+                    "ABC",
+                    style: TextStyle(color: Colors.black),
                   ),
                 ],
               ),
@@ -54,71 +108,29 @@ class _OrderDetailsState extends State<OrderDetails> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "23-04-2024",
-                    style: TextStyle(color: Colors.black),
+                  Column(
+                    children: [
+                      Text(
+                        "Annual Billing",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Text(
+                        "Rs.65,77,222",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "5",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  Text(
-                    "Rs.5,000",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ],
-              ),
-              SizedBox(height: 4),
-              Text(
-                "Created by",
-                style: TextStyle(color: Colors.grey),
-              ),
-              SizedBox(height: 4),
-              Text(
-                "Khizar",
-                style: TextStyle(color: Colors.black),
-              ),
-              SizedBox(height: 4),
-              Divider(),
-              SizedBox(height: 4),
-              Text(
-                "Customer Name",
-                style: TextStyle(color: Colors.grey),
-              ),
-              SizedBox(height: 4),
-              Text(
-                "ABC",
-                style: TextStyle(color: Colors.black),
-              ),
-              SizedBox(height: 4),
-              Row(
-                children: [
-                  Text(
-                    "Annual Billing",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  SizedBox(
-                    width: 70,
-                  ),
-                  Text(
-                    "Total Unpaid",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-              SizedBox(height: 4),
-              Row(
-                children: [
-                  Text(
-                    "Rs.65,77,222",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  SizedBox(
-                    width: 85,
-                  ),
-                  Text(
-                    "Rs.1,10,500",
-                    style: TextStyle(color: Colors.black),
+                  Column(
+                    children: [
+                      Text(
+                        "Total Unpaid",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Text(
+                        "Rs.1,10,500",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
                   ),
                 ],
               ),

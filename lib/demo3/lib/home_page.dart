@@ -1,11 +1,14 @@
 // ignore_for_file: unused_import, unnecessary_statements
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:demo3/leave.dart';
 import 'package:demo3/order.dart';
 import 'package:demo3/transactions.dart';
 import 'package:demo3/visits.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'attendance.dart';
+import 'expense.dart';
+import 'holiday.dart';
 import 'payment.dart';
 import 'payroll.dart';
 import 'payroll_summary.dart';
@@ -49,10 +52,10 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final List _pages = [
-    TaskPage(),
-    TaskPage(),
-    PayrollScreen(),
-    TaskPage(),
+    ExpenseScreen(),
+    LeaveScreen(),
+    PayrollSummary(),
+    HolidayScreen(),
     AttendanceScreen(),
     TransactionScreen(),
     OrderScreen(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'components/transaction_card.dart';
 
 class TransactionScreen extends StatefulWidget {
@@ -51,6 +52,23 @@ class _TransactionScreenState extends State<TransactionScreen> {
               ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {
+          Fluttertoast.showToast(
+              msg: "Download (In Progress)",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.black,
+              backgroundColor: Colors.white,
+              fontSize: 16);
+        },
+        child: Icon(
+          Icons.download_outlined,
+          color: Colors.blue,
         ),
       ),
     );

@@ -1,5 +1,5 @@
+import 'package:demo3/add_payment.dart';
 import 'package:flutter/material.dart';
-
 import 'components/payment_card.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -62,6 +62,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddPayment(),
+            ),
+          );
+        },
+        backgroundColor: Colors.lightBlueAccent,
+        child: Icon(
+          Icons.add_outlined,
+          color: Colors.white,
         ),
       ),
     );

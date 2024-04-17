@@ -3,11 +3,11 @@ import 'package:demo3/components/update_taskfield.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class UpdateVisit extends StatefulWidget {
-  const UpdateVisit({super.key});
+class CreateVisit extends StatefulWidget {
+  const CreateVisit({super.key});
 
   @override
-  State<UpdateVisit> createState() => _UpdateVisitState();
+  State<CreateVisit> createState() => _CreateVisitState();
 }
 
 List<String> customerList = [
@@ -24,14 +24,14 @@ List<String> visitList = [
   "Product Demo",
 ];
 
-class _UpdateVisitState extends State<UpdateVisit> {
+class _CreateVisitState extends State<CreateVisit> {
   TextEditingController customerController = TextEditingController();
   TextEditingController visitController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Update Visit"),
+        title: Text("Create Visit"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -101,7 +101,7 @@ class _UpdateVisitState extends State<UpdateVisit> {
                         color: Colors.lightBlueAccent,
                         onPress: () {
                           Fluttertoast.showToast(
-                              msg: "Updated",
+                              msg: "Created",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
@@ -109,7 +109,7 @@ class _UpdateVisitState extends State<UpdateVisit> {
                               backgroundColor: Colors.white,
                               fontSize: 16);
                         },
-                        text: "Update",
+                        text: "Create",
                       ),
                     ),
                   ],

@@ -1,6 +1,7 @@
-import 'package:demo3/components/order_card.dart';
 import 'package:demo3/components/visit_card.dart';
 import 'package:flutter/material.dart';
+
+import 'create_visit.dart';
 
 class VisitScreen extends StatefulWidget {
   const VisitScreen({super.key});
@@ -48,6 +49,21 @@ class _VisitScreenState extends State<VisitScreen> {
               ),
             ],
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlueAccent,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CreateVisit(),
+            ),
+          );
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
         ),
       ),
     );
