@@ -34,7 +34,10 @@ class UpdateTaskField extends StatelessWidget {
       onTap: onPress,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-        label: Text(labelText),
+        label: Text(
+          labelText,
+          style: TextStyle(fontSize: 14),
+        ),
         prefixIcon: startIcon,
         suffixIcon: endIcon,
         focusedBorder: OutlineInputBorder(

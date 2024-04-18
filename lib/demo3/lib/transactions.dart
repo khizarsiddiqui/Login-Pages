@@ -1,3 +1,4 @@
+import 'package:demo3/components/filter_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'components/transaction_card.dart';
@@ -10,11 +11,27 @@ class TransactionScreen extends StatefulWidget {
 }
 
 class _TransactionScreenState extends State<TransactionScreen> {
+   bool _showBottomSheet = false;
+
+  // Method to toggle the visibility of the bottom sheet
+  void _toggleBottomSheet() {
+    setState(() {
+      _showBottomSheet = !_showBottomSheet;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Transactions"),
+        actions: [
+            IconButton(
+              onPressed: () {
+                _toggleBottomSheet();
+              },
+              icon: Icon(Icons.filter_list_outlined),
+            )
+          ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -54,7 +71,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      bottomSheet: _showBottomSheet ? FilterTransaction() : null,
+      floatingActionButton: _showBottomSheet ? null : FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {
           Fluttertoast.showToast(

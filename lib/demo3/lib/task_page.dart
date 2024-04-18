@@ -1,3 +1,5 @@
+import 'package:demo3/add_task.dart';
+import 'package:demo3/components/filter_task.dart';
 import 'package:flutter/material.dart';
 import 'components/tasks_cards.dart';
 
@@ -7,6 +9,15 @@ class TaskPage extends StatefulWidget {
 }
 
 class _TaskPageState extends State<TaskPage> {
+  bool _showBottomSheet = false;
+
+  // Method to toggle the visibility of the bottom sheet
+  void _toggleBottomSheet() {
+    setState(() {
+      _showBottomSheet = !_showBottomSheet;
+    });
+  }
+
   final List<Widget> _tabs = [
     // Content for the "My Tasks" tab
     SingleChildScrollView(
@@ -87,7 +98,6 @@ class _TaskPageState extends State<TaskPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text("All Tasks"),
-          backgroundColor: Colors.lightBlueAccent,
           bottom: TabBar(
             indicatorColor: Colors.blue,
             labelColor: const Color.fromARGB(255, 34, 85, 127),
@@ -108,10 +118,42 @@ class _TaskPageState extends State<TaskPage> {
               ),
             ],
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                _toggleBottomSheet();
+              },
+              icon: Icon(Icons.filter_list_outlined),
+            )
+          ],
         ),
-        body: TabBarView(
-          children: _tabs,
+        body: Column(
+          children: [
+            Expanded(
+              child: TabBarView(
+                children: _tabs,
+              ),
+            ),
+          ],
         ),
+        bottomSheet: _showBottomSheet ? FilterTask() : null,
+        floatingActionButton: _showBottomSheet
+            ? null
+            : FloatingActionButton(
+                backgroundColor: Colors.lightBlueAccent,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddTask(),
+                    ),
+                  );
+                },
+                child: Icon(
+                  Icons.add_outlined,
+                  color: Colors.white,
+                ),
+              ),
       ),
     );
   }

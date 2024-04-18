@@ -1,10 +1,16 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:demo3/add_leave.dart';
+import 'package:demo3/add_payment.dart';
+import 'package:demo3/add_task.dart';
 import 'package:demo3/components/halfrounded_box.dart';
+import 'package:demo3/create_order.dart';
+import 'package:demo3/create_visit.dart';
 import 'package:demo3/feed.dart';
 import 'package:demo3/home_page.dart';
 import 'package:demo3/profile.dart';
 import 'package:demo3/task_page.dart';
 import 'package:flutter/material.dart';
+import 'add_expense.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key});
@@ -15,28 +21,30 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   final List<IconData> _icons = [
-    Icons.money,
-    Icons.shopping_cart,
-    Icons.airplane_ticket,
-    Icons.camera,
-    Icons.book,
-    Icons.music_note,
-    Icons.movie,
-    Icons.restaurant,
-    Icons.directions_bike,
+    Icons.payments_outlined,
+    Icons.list_alt_outlined,
+    Icons.transcribe_outlined,
+    Icons.list_alt_outlined,
+    Icons.bed_outlined,
+    Icons.currency_exchange_outlined,
   ];
 
   final List _pages = [
-    TaskPage(),
-    TaskPage(),
-    TaskPage(),
-    TaskPage(),
-    TaskPage(),
-    TaskPage(),
-    TaskPage(),
-    TaskPage(),
-    TaskPage(),
+    AddPayment(),
+    AddTask(),
+    CreateVisit(),
+    CreateOrder(),
+    AddLeave(),
+    ApplyExpense(),
   ];
+  // final List<String> _pagesText = [
+  //   "Payment Entry",
+  //   "Create Task",
+  //   "Create Visit",
+  //   "Create Order",
+  //   "Apply Order",
+  //   "Apply Expense",
+  // ];
   List<Widget> _screens = [
     HomePage(),
     TaskPage(),
@@ -111,7 +119,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       padding: EdgeInsets.all(8),
                       child: InkWell(
                         onTap: () {
-                          print(index);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -123,9 +130,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           height: 0.05,
                           width: 0.1,
                           containerColor: Colors.blue,
-                          child: Center(
-                            child: Icon(_icons[index], size: 20),
-                          ),
+                          child: Icon(_icons[index], size: 20),
                         ),
                       ),
                     );

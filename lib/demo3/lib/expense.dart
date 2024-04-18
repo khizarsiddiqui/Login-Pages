@@ -1,3 +1,4 @@
+import 'package:demo3/add_expense.dart';
 import 'package:flutter/material.dart';
 import 'components/expense_card.dart';
 
@@ -230,6 +231,21 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
               ),
             ),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlueAccent,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ApplyExpense(),
+            ),
+          );
+        },
+        child: Icon(
+          Icons.add_outlined,
+          color: Colors.white,
         ),
       ),
     );

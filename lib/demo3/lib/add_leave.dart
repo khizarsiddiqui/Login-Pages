@@ -1,6 +1,8 @@
 import 'package:demo3/components/common_button.dart';
 import 'package:demo3/components/add_paymentfield.dart';
+import 'package:demo3/components/update_taskfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
@@ -29,6 +31,7 @@ class _AddLeaveState extends State<AddLeave> {
   TextEditingController leaveController = TextEditingController();
   TextEditingController periodController = TextEditingController();
   DateTime? _selectedDate;
+  bool status = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,76 +89,119 @@ class _AddLeaveState extends State<AddLeave> {
                 height: 15,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: AddPaymentField(
-                      controller: dateController,
-                      readOnly: true,
-                      onPress: () {
-                        _selectDate(context);
-                      },
-                      labelText: "Start Date*",
-                      startIcon: Icon(Icons.calendar_month_outlined),
+                  Text(
+                    "Add half day",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(
                     width: 15,
                   ),
-                  Expanded(
-                    child: AddPaymentField(
-                      readOnly: true,
-                      labelText: "Period*",
-                      controller: leaveController,
-                      endIcon: Icon(Icons.arrow_upward_outlined),
-                      onPress: () {
-                        mysheet(context, period, periodController);
-                      },
-                    ),
+                  FlutterSwitch(
+                    height: 20.0,
+                    width: 40.0,
+                    padding: 3.0,
+                    toggleSize: 14.0,
+                    borderRadius: 10.0,
+                    activeColor: Colors.blue,
+                    value: status,
+                    onToggle: (value) {
+                      setState(() {
+                        status = value;
+                      });
+                    },
                   ),
                 ],
               ),
               SizedBox(
                 height: 15,
               ),
-              Container(
+              Visibility(
+                visible: status, 
                 child: Row(
                   children: [
                     Expanded(
-                      child: CommonButton(
-                        color: Colors.lightBlueAccent,
+                      child: AddPaymentField(
+                        controller: dateController,
+                        readOnly: true,
                         onPress: () {
-                          Fluttertoast.showToast(
-                              msg: "Cancelled",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              textColor: Colors.black,
-                              backgroundColor: Colors.white,
-                              fontSize: 16);
+                          _selectDate(context);
                         },
-                        text: "Cancel",
+                        labelText: "(Half Day)*",
+                        startIcon: Icon(Icons.calendar_month_outlined),
                       ),
                     ),
                     SizedBox(
                       width: 15,
                     ),
                     Expanded(
-                      child: CommonButton(
-                        color: Colors.lightBlueAccent,
+                      child: AddPaymentField(
+                        readOnly: true,
+                        labelText: "Period*",
+                        controller: leaveController,
+                        endIcon: Icon(Icons.arrow_upward_outlined),
                         onPress: () {
-                          Fluttertoast.showToast(
-                              msg: "Applied",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              textColor: Colors.black,
-                              backgroundColor: Colors.white,
-                              fontSize: 16);
+                          mysheet(context, period, periodController);
                         },
-                        text: "Apply",
                       ),
                     ),
                   ],
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              UpdateTaskField(
+                labelText: "Type Reason here...*",
+                minLines: 1,
+                maxLines: 5,
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: CommonButton(
+                  color: Colors.lightBlueAccent,
+                  onPress: () {
+                    Fluttertoast.showToast(
+                        msg: "Cancelled",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.black,
+                        backgroundColor: Colors.white,
+                        fontSize: 16);
+                  },
+                  text: "Cancel",
+                ),
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                child: CommonButton(
+                  color: Colors.lightBlueAccent,
+                  onPress: () {
+                    Fluttertoast.showToast(
+                        msg: "Applied",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.black,
+                        backgroundColor: Colors.white,
+                        fontSize: 16);
+                  },
+                  text: "Apply",
                 ),
               ),
             ],
