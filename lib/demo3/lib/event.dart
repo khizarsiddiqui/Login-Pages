@@ -1,77 +1,194 @@
-// import 'package:flutter/material.dart';
-// import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-// class EventScreen extends StatefulWidget {
-//   const EventScreen({super.key});
+class Event {
+  final String title;
+  Event({required this.title});
 
-//   @override
-//   State<EventScreen> createState() => _EventScreenState();
-// }
+  @override
+  String toString() => this.title;
+}
 
-// class _EventScreenState extends State<EventScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         child: SfCalendar(
-//             // view: CalendarView.month,
-//             // dataSource: MeetingDataSource(_getDataSource()),
-//             // monthViewSettings: MonthViewSettings(
-//             //     appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
-//             ),
-//       ),
-//     );
-//   }
-// }
+class EventScreen extends StatefulWidget {
+  const EventScreen({Key? key}) : super(key: key);
 
-// // class Meeting {
-// //   Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
+  @override
+  State<EventScreen> createState() => _EventScreenState();
+}
 
-// //   String eventName;
-// //   DateTime from;
-// //   DateTime to;
-// //   Color background;
-// //   bool isAllDay;
-// // }
+class _EventScreenState extends State<EventScreen> {
+  late Map<DateTime, List<Event>> selectedEvents;
 
-// // List<Meeting> _getDataSource() {
-// //   final List<Meeting> meetings = <Meeting>[];
-// //   final DateTime today = DateTime.now();
-// //   final DateTime startTime =
-// //       DateTime(today.year, today.month, today.day, 9, 0, 0);
-// //   final DateTime endTime = startTime.add(const Duration(hours: 2));
-// //   meetings.add(Meeting(
-// //       'Conference', startTime, endTime, const Color(0xFF0F8644), false));
-// //   return meetings;
-// // }
+  CalendarFormat format = CalendarFormat.month;
+  DateTime selectedDay = DateTime.now();
+  DateTime focusedDay = DateTime.now();
 
-// // class MeetingDataSource extends CalendarDataSource {
-// //   MeetingDataSource(List<Meeting> source) {
-// //     appointments = source;
-// //   }
+  //Holds the states
+  @override
+  void initState() {
+    selectedEvents = {};
+    super.initState();
+  }
 
-// //   @override
-// //   DateTime getStartTime(int index) {
-// //     return appointments![index].from;
-// //   }
+  //Text Controller
+  TextEditingController eventController = TextEditingController();
 
-// //   @override
-// //   DateTime getEndTime(int index) {
-// //     return appointments![index].to;
-// //   }
+  //Events
+  List<Event> getEventsfromDay(DateTime date) {
+    return selectedEvents[date] ?? [];
+  }
 
-// //   @override
-// //   String getSubject(int index) {
-// //     return appointments![index].eventName;
-// //   }
+  //Garbage collector
+  @override
+  void dispose() {
+    eventController.dispose();
+    super.dispose();
+  }
 
-// //   @override
-// //   Color getColor(int index) {
-// //     return appointments![index].background;
-// //   }
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              TableCalendar(
+                firstDay: DateTime.utc(2015),
+                lastDay: DateTime.utc(2035),
+                focusedDay: DateTime.now(),
+                calendarFormat: format,
+                /*Create the option to change format
+                    onFormatChanged: (CalendarFormat format) {
+                      setState(() {
+                        format: format;
+                      });
+                    },*/
+                //Option to select day with taps and color customization
+                selectedDayPredicate: (day) {
+                  return isSameDay(selectedDay, day);
+                },
+                onDaySelected: (DateTime selectDay, DateTime focusDay) {
+                  setState(() {
+                    selectedDay = selectDay;
+                    focusedDay = focusDay;
+                  });
+                },
 
-// //   @override
-// //   bool isAllDay(int index) {
-// //     return appointments![index].isAllDay;
-// //   }
-// // }
+                eventLoader: getEventsfromDay,
+
+                //Calendar Style:
+                calendarStyle: const CalendarStyle(
+                  isTodayHighlighted: true,
+                  selectedDecoration: BoxDecoration(
+                    color: Color.fromARGB(255, 6, 113, 200),
+                    shape: BoxShape.circle,
+                  ),
+                  selectedTextStyle: TextStyle(color: Colors.white),
+                  todayDecoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                  todayTextStyle: TextStyle(color: Colors.white),
+                  defaultDecoration: BoxDecoration(
+                    color: Colors.lightBlueAccent,
+                    shape: BoxShape.circle,
+                  ),
+                  weekendDecoration: BoxDecoration(
+                    color: Colors.lightBlueAccent,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                headerStyle: const HeaderStyle(
+                  formatButtonVisible: false,
+                  titleCentered: true,
+                  formatButtonShowsNext: false,
+                ),
+                /*
+                  const Center(
+                  child: Text('Calendar Coming Soon...'),
+                  */
+              ),
+              ...getEventsfromDay(selectedDay).map(
+                (Event event) => ListTile(
+                  title: Text(
+                    "Event Name: $event",
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 0, 87, 128),
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              iconColor: Colors.white,
+              backgroundColor: Color.fromARGB(255, 151, 204, 229),
+              title: const Text(
+                "Add Event",
+                style: TextStyle(color: Colors.white),
+              ),
+              content: TextFormField(
+                controller: eventController,
+              ),
+              actions: [
+                TextButton(
+                  child: const Text(
+                    "Nope",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                TextButton(
+                  child: const Text(
+                    "Add",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () => {
+                    if (eventController.text.isEmpty)
+                      {
+                        //Navigator.pop(context)
+                      }
+                    else
+                      {
+                        if (selectedEvents[selectedDay] != null)
+                          {
+                            selectedEvents[selectedDay]?.add(
+                              Event(title: eventController.text),
+                            )
+                          }
+                        else
+                          {
+                            selectedEvents[selectedDay] = [
+                              Event(title: eventController.text)
+                            ]
+                          },
+                      },
+                    Navigator.pop(context),
+                    eventController.clear(),
+                    setState(() {})
+                  },
+                ),
+              ],
+            ),
+          ),
+          label: const Text(
+            "Add Event",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          backgroundColor: Colors.lightBlueAccent,
+          icon: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}

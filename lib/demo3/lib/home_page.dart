@@ -1,11 +1,13 @@
 // ignore_for_file: unused_import, unnecessary_statements
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:demo3/components/leavebalance_card.dart';
 import 'package:demo3/leave.dart';
 import 'package:demo3/order.dart';
 import 'package:demo3/transactions.dart';
 import 'package:demo3/visits.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pie_chart/pie_chart.dart';
 import 'attendance.dart';
 import 'expense.dart';
 import 'holiday.dart';
@@ -62,9 +64,34 @@ class _HomePageState extends State<HomePage> {
     VisitScreen(),
     PaymentScreen(),
   ];
-
+  final List<Color> colorList = [
+    Colors.blueAccent,
+    Colors.green,
+    Colors.red,
+  ];
+  Map<String, double> dataMap = {
+    "Used 500": 10,
+  };
+  List<String> leaveType = [
+    "Sick Leave",
+    "Sick",
+    "Leave Without Pay",
+    "Privilege Leave",
+    "Compensatory Off",
+    "Casual Leave",
+  ];
   @override
   Widget build(BuildContext context) {
+    // // Calculate the sum of values without the "BHD" prefix
+    // double sum = 0;
+    // dataMap.forEach(
+    //   (key, value) {
+    //     // Extract the numeric part of the key (excluding "BHD")
+    //     String numericPart = key.substring(5);
+    //     // Convert the numeric part to a double and add it to the sum
+    //     sum += double.parse(numericPart);
+    //   },
+    // );
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -100,8 +127,7 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               Text(
                                 "Welcome",
-                                style: TextStyle(
-                                    fontSize: 20),
+                                style: TextStyle(fontSize: 20),
                               ),
                               Text(
                                 "Username 123",
@@ -110,13 +136,11 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Text(
                                 "Day",
-                                style: TextStyle(
-                                    fontSize: 15),
+                                style: TextStyle(fontSize: 15),
                               ),
                               Text(
                                 "3rd April 2024",
-                                style: TextStyle(
-                                    fontSize: 15),
+                                style: TextStyle(fontSize: 15),
                               ),
                             ],
                           ),
@@ -285,7 +309,10 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(_icons[index], size: 30),
-                            Text(_iconText[index], style: TextStyle(fontSize: 12),),
+                            Text(
+                              _iconText[index],
+                              style: TextStyle(fontSize: 12),
+                            ),
                           ],
                         ),
                       ),
@@ -606,16 +633,18 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-              child: HalfRounded(
-                width: 0.1,
-                height: 0.23,
-                child: Center(
-                  child: Text(
-                    "No Data Available",
-                    style: TextStyle(color: Colors.blueGrey, fontSize: 15),
-                  ),
+            Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: leaveType.map((type) {
+                    return Column(
+                      children: [
+                        LeaveBalanceCard(leaveType: type),
+                        SizedBox(height: 10),
+                      ],
+                    );
+                  }).toList(),
                 ),
               ),
             ),

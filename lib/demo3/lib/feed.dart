@@ -1,9 +1,9 @@
-import 'package:demo3/create_poll.dart';
-import 'package:demo3/event.dart';
 import 'package:flutter/material.dart';
 import 'components/feed_cards.dart';
 import 'components/poll_card.dart';
+import 'create_poll.dart';
 import 'create_post.dart';
+import 'event.dart';
 
 class FeedPage extends StatefulWidget {
   @override
@@ -58,12 +58,10 @@ class _FeedPageState extends State<FeedPage> {
       ),
     ),
     // Content for the "Events" tab
-    SingleChildScrollView(
-      child: Column(
-        children: [
-          // EventScreen(),
-        ],
-      ),
+    Container(
+      height: 100,
+      width: 100,
+      child: EventScreen(),
     ),
   ];
 
@@ -86,7 +84,7 @@ class _FeedPageState extends State<FeedPage> {
                 ),
               ),
               Tab(
-                text: "Events",
+                text: "Events", // Add a new tab for Events
                 icon: Icon(
                   Icons.event,
                   color: Colors.black,

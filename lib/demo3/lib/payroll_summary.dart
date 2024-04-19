@@ -21,12 +21,12 @@ class _PayrollSummaryState extends State<PayrollSummary> {
       Color.fromRGBO(129, 250, 112, 1),
     ],
     [
-      Color.fromRGBO(41, 62, 8, 1),
+      Color.fromRGBO(184, 69, 69, 1),
       Color.fromRGBO(158, 76, 72, 1),
     ],
     [
       Color.fromRGBO(129, 182, 205, 1),
-      Color.fromRGBO(91, 253, 199, 1),
+      Color.fromRGBO(0, 82, 55, 1),
     ],
     [
       Color.fromRGBO(175, 63, 62, 1.0),
@@ -34,12 +34,21 @@ class _PayrollSummaryState extends State<PayrollSummary> {
     ],
   ];
   Map<String, double> dataMap = {
-    "BHD 10300": 7,
+    "BHD 10300": 4,
     "BHD 200": 3,
+    "BHD 1200": 3,
   };
 
   @override
   Widget build(BuildContext context) {
+    // Calculate the sum of values without the "BHD" prefix
+    double sum = 0;
+    dataMap.forEach((key, value) {
+      // Extract the numeric part of the key (excluding "BHD")
+      String numericPart = key.substring(4);
+      // Convert the numeric part to a double and add it to the sum
+      sum += double.parse(numericPart);
+    });
     void showYearMenu() async {
       final List<String> popList = ['2024', '2023', '2022'];
       await showMenu(
@@ -177,7 +186,11 @@ class _PayrollSummaryState extends State<PayrollSummary> {
                 width: double.infinity,
                 height: 150,
                 child: PieChart(
-                  centerText: "Gross Pay",
+                  centerTextStyle: TextStyle(
+                    color: Color.fromARGB(255, 85, 84, 84),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  centerText: "Gross Pay\n $sum",
                   chartRadius: 120,
                   ringStrokeWidth: 08,
                   dataMap: dataMap,
@@ -187,6 +200,7 @@ class _PayrollSummaryState extends State<PayrollSummary> {
                   chartValuesOptions: ChartValuesOptions(
                     chartValueBackgroundColor: Colors.transparent,
                     showChartValuesInPercentage: false,
+                    showChartValues: false,
                   ),
                 ),
                 decoration: BoxDecoration(

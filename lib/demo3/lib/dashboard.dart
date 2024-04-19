@@ -2,7 +2,6 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:demo3/add_leave.dart';
 import 'package:demo3/add_payment.dart';
 import 'package:demo3/add_task.dart';
-import 'package:demo3/components/halfrounded_box.dart';
 import 'package:demo3/create_order.dart';
 import 'package:demo3/create_visit.dart';
 import 'package:demo3/feed.dart';
@@ -37,14 +36,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
     AddLeave(),
     ApplyExpense(),
   ];
-  // final List<String> _pagesText = [
-  //   "Payment Entry",
-  //   "Create Task",
-  //   "Create Visit",
-  //   "Create Order",
-  //   "Apply Order",
-  //   "Apply Expense",
-  // ];
+  final List<String> _pagesText = [
+    "Payment Entry",
+    "Create Task",
+    "Create Visit",
+    "Create Order",
+    "Apply Leave",
+    "Apply Expense",
+  ];
   List<Widget> _screens = [
     HomePage(),
     TaskPage(),
@@ -107,13 +106,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Wrap(
             children: [
               GridView.count(
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 shrinkWrap: true,
-                childAspectRatio: 1.5,
+                childAspectRatio: 2.0,
                 physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 5),
                 children: List.generate(
-                  9,
+                  6,
                   (index) {
                     return Padding(
                       padding: EdgeInsets.all(8),
@@ -126,11 +125,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           );
                         },
-                        child: HalfRounded(
-                          height: 0.05,
-                          width: 0.1,
-                          containerColor: Colors.blue,
-                          child: Icon(_icons[index], size: 20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.lightBlueAccent,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(_icons[index], size: 25),
+                              Text(
+                                _pagesText[index],
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
